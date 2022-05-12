@@ -19,10 +19,18 @@ function Tabela(){
         }
         axios.post('https://iot.14mob.com/api-fiap/public/index.php/users', parametros).then(response => {
             if(response.status == 201){
-                alert('eba, deu certo')
+                alert('Usuário cadastrado')
             }else{
                 alert('lascou')
             }
+        }).catch(error => console.log(error))
+    }
+
+    function removerUsuario(id){
+        console.log('funcionando'+ id)
+
+        axios.delete('https://iot.14mob.com/api-fiap/public/index.php/users/'+ id).then(response => {
+            alert('Usuário removido')
         }).catch(error => console.log(error))
     }
 
@@ -63,6 +71,7 @@ function Tabela(){
                 <th>ID</th>
                 <th>Nome</th>
                 <th>Email</th>
+                <th>Ações</th>
                 </tr>
             
             </thead>  
@@ -73,6 +82,9 @@ function Tabela(){
                             <td>{usuario.id}</td>
                             <td>{usuario.name}</td>
                             <td>{usuario.email}</td>
+                            <td>
+                                <button onClick={event => removerUsuario(usuario.id)}>Deletar</button>
+                            </td>
                         </tr>
                         )
                 } ) }
