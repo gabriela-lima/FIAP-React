@@ -39,9 +39,18 @@
 
 .minhaTabela{
   border: solid red 1px;
+  text-align: center;
 }
 
 .formulario{
   margin-top: 20px;
   margin-bottom: 20px;
+}
+
+.deletar{
+  margin-left: 10px;
+}
+
+.titulos{
+  text-align: center;
 }

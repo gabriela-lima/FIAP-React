@@ -3,7 +3,8 @@ import './App.css';
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Lista from './Lista.js';
-
+import Cartao from './Cartao.js';
+import 'bootstrap/dist/css/bootstrap.css';
 
 
 function App() {
@@ -73,31 +74,60 @@ useEffect(() => {
 
 
 return (
-    <div>
-      <form className="formulario" onSubmit={event => {
-          event.preventDefault();
-          if(id != ''){
-              atualizarUsuarioApi()
-          }else{
-              salvarFormulario()
-          }
-          return false;
-      } } > 
-      <label>Nome</label>
-      <input name="name" value={ nome }  onChange={ e => setNome(e.target.value) } />
-      <label>Email</label>
-      <input name="email" value={ email } onChange={ e => setEmail(e.target.value) } />
-      <label>senha</label>
-      <input name="password" value={ senha } onChange={ e => setSenha(e.target.value) } />
-      
-      <button type="submit">Enviar</button>
-      </form>
+    <div className='container'>
+        <Cartao titulo="Cadastro de usuário">
+            <form className="formulario" onSubmit={event => {
+                event.preventDefault();
+                if(id != ''){
+                    atualizarUsuarioApi()
+                }else{
+                    salvarFormulario()
+                }
+                return false;
+                } } > 
 
-      <p>{ nome }</p>
-      <p>{ email }</p>
-      <p>{ senha }</p>
+                <div className='row'>
+                    <div className='col-sm-12'>
+                        <div className='input-group input-group-sm mb-3'>
+                            <span className="input-group-text" id="inputGroup-sizing-sm">Nome:</span>
+                            <input type="text" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" name="name"  value={ nome }  onChange={ e => setNome(e.target.value) }></input>
+                            {/* <label>Nome</label> */}
+                            {/* <input name="name"  value={ nome }  onChange={ e => setNome(e.target.value) } /> */}
+                        </div>
+                    </div>
+                </div>
+                <div className='row'>
+                    <div className='col-sm-12'>
+                            <div className='input-group input-group-sm mb-3'> 
+                                <span className="input-group-text" id="inputGroup-sizing-sm">Senha:</span>
+                                <input type="password" class="form-control" id="inputPassword" name="password" value={ senha } onChange={ e => setSenha(e.target.value) }></input>
+                                {/* <label>senha</label>
+                                <input name="password" value={ senha } onChange={ e => setSenha(e.target.value) } /> */}
+                            </div>
+                        </div>
+                    </div>  
+                <div className='row'>
+                    <div className='col-sm-12'>
+                        <div className='input-group input-group-sm mb-3'> 
+                            <span className="input-group-text" id="inputGroup-sizing-sm">Email:</span>
+                            <input type="text" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" name="email" value={ email } onChange={ e => setEmail(e.target.value) }></input>
+                            {/* <label>Email</label>
+                            <input name="email" value={ email } onChange={ e => setEmail(e.target.value) } /> */}
+                        </div>
+                    </div>
+                </div>
+                <div className='row'>
+                    <div className='col-sm-8'>
+                        <button type="submit" className='btn btn-success'>Enviar</button>
+                    </div>
+                </div>
+                
+            </form>
+        </Cartao>
+        <Cartao titulo="Lista de usuários">
+            <Lista usuarios={usuarios} atualizarLista = {e => atualizarLista()} onEditar= { usuario => atualizarUsuario(usuario) } ></Lista>
+        </Cartao>
       
-      <Lista usuarios={usuarios} atualizarLista = {e => atualizarLista()} onEditar= { usuario => atualizarUsuario(usuario) } ></Lista>
 
   </div>
     
